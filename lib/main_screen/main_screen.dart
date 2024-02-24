@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.green, // Top 30%
-              Colors.white, // Bottom 30%
+              Colors.green, // Bottom 30%
             ],
             stops: [0.1, 2.0], // Adjust the stop values to control the transition point
           ),

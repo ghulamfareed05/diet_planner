@@ -77,6 +77,8 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/breakfast/
+    - assets/images/lunch/
+    - assets/images/dinner/
     - assets/data/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
