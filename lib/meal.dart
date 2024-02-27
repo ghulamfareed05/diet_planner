@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Recipe {
+class Recipe1 {
   final String name;
   final double calories;
   final double carbohydrates;
   final double proteins;
   final double fats;
 
-  Recipe({
+  Recipe1({
     required this.name,
     required this.calories,
     required this.carbohydrates,
@@ -22,14 +22,14 @@ class Meal extends StatefulWidget {
 }
 
 class _MealState extends State<Meal> {
-  List<Recipe> availableRecipes = [
-    Recipe(name: 'Recipe 1', calories: 300, carbohydrates: 30, proteins: 20, fats: 10),
-    Recipe(name: 'Recipe 2', calories: 400, carbohydrates: 40, proteins: 25, fats: 15),
-    Recipe(name: 'Recipe 3', calories: 250, carbohydrates: 25, proteins: 15, fats: 8),
+  List<Recipe1> availableRecipes = [
+    Recipe1(name: 'Recipe 1', calories: 300, carbohydrates: 30, proteins: 20, fats: 10),
+    Recipe1(name: 'Recipe 2', calories: 400, carbohydrates: 40, proteins: 25, fats: 15),
+    Recipe1(name: 'Recipe 3', calories: 250, carbohydrates: 25, proteins: 15, fats: 8),
     // Add more recipes as needed
   ];
 
-  List<Recipe> selectedRecipes = [];
+  List<Recipe1> selectedRecipes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _MealState extends State<Meal> {
             child: ListView.builder(
               itemCount: availableRecipes.length,
               itemBuilder: (context, index) {
-                Recipe recipe = availableRecipes[index];
+                Recipe1 recipe = availableRecipes[index];
                 return ListTile(
                   title: Text(recipe.name),
                   subtitle: Text('Calories: ${recipe.calories}'),
@@ -69,7 +69,7 @@ class _MealState extends State<Meal> {
             child: ListView.builder(
               itemCount: selectedRecipes.length,
               itemBuilder: (context, index) {
-                Recipe recipe = selectedRecipes[index];
+                Recipe1 recipe = selectedRecipes[index];
                 return ListTile(
                   title: Text(recipe.name),
                   subtitle: Text('Calories: ${recipe.calories}'),

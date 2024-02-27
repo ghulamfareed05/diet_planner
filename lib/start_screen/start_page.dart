@@ -1,5 +1,6 @@
 import 'package:diet_planner/home_screen/home_screen.dart';
 import 'package:diet_planner/meal.dart';
+import 'package:diet_planner/upload_json.dart';
 import 'package:flutter/material.dart';
 import '../components/lite_button.dart';
 import '../components/video_player_widget.dart';
@@ -29,7 +30,7 @@ class VideoSplash extends StatelessWidget {
                     Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  Meal()));
+                                    builder: (context) =>  JsonUploadScreen()));
                   },
                 ),
                 SizedBox(

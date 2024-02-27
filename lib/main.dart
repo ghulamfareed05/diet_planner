@@ -1,4 +1,6 @@
 import 'package:diet_planner/provider/auth_provider.dart';
+import 'package:diet_planner/provider/goal_provider.dart';
+import 'package:diet_planner/provider/recipe_provider.dart';
 import 'package:diet_planner/start_screen/start_page.dart';
 import 'package:diet_planner/theme.dart';
 import 'package:diet_planner/utilities.dart';
@@ -18,6 +20,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ChangeNotifierProvider(create: (_) => GoalProvider()),
+      ChangeNotifierProvider(create: (_) => RecipeProvider()),
     ],
     child: const MyApp(),
   ));

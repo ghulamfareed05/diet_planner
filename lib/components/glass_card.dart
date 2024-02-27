@@ -11,7 +11,7 @@ class GlassCard extends StatefulWidget {
 
 class _GlassCardState extends State<GlassCard> {
   final List<double> _waterValues = List.generate(8, (_) => 0.0);
-  final String imagePath = "assets/images/glass1.jpg";
+  final String imagePath = "assets/images/glass.png";
 
   void _toggleGlassFilled(int index) {
     setState(() {

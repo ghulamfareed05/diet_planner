@@ -1,18 +1,52 @@
+import 'package:diet_planner/constants.dart';
+import 'package:diet_planner/size_config.dart';
 import 'package:flutter/material.dart';
 
+import 'components/recipe.dart';
+import 'components/recipe_details.dart';
+
 class MealPlannerScreen extends StatelessWidget {
+  MealPlannerScreen(
+      {super.key,
+      required this.recipes,
+      required this.category,
+      required this.imageUrl});
+  List<Recipe> recipes = [];
+  String category;
+  String imageUrl;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text('Build a meal plan'),
-            expandedHeight: 200.0,
+            title: Text(
+              'Build a meal plan',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: getProportionateScreenWidth(24),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            expandedHeight: SizeConfig.screenHeight * 0.28,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                'https://images.unsplash.com/photo-1515443961218-a51367888e4f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWVhbCUyMHBsYW5uaW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-                fit: BoxFit.cover,
+              background: Stack(
+                children: [
+                  Image.asset(
+                    imageUrl,
+                    width: SizeConfig.screenWidth,// Replace with the actual image asset path
+                    fit: BoxFit.cover,
+                  ),
+                  // Transparent overlay with customization options
+                  Container(
+                    decoration: BoxDecoration(
+                      // Adjust color, gradient, or image for the overlay
+                      color: Colors.green.withOpacity(0.3), // Default color with opacity
+
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -21,8 +55,8 @@ class MealPlannerScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'YOUR RECIPES',
-                  style: TextStyle(
+                  category,
+                  style: const TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -38,70 +72,79 @@ class MealPlannerScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // TODO: implement the logic to add recipes
-                  },
-                  child: Text('Add Recipes'),
-                ),
-              ),
             ]),
           ),
           SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 250.0,
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 2.0,
               childAspectRatio: 0.8,
             ),
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
+              (BuildContext context, int index) {
+                final recipe = recipes[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    elevation: 4.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16.0),
-                            topRight: Radius.circular(16.0),
-                          ),
-                          child: Image.network(
-                            // TODO: replace with the actual image url of the recipe option
-                            'https://via.placeholder.com/150',
-                            height: 150.0,
-                            fit: BoxFit.cover,
-                          ),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Navigate to the recipe details screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RecipeDetailScreen(recipe: recipe),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            // TODO: replace with the actual title of the recipe option
-                            'Recipe Option $index',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
+                      );
+                    },
+                    child: Card(
+                      elevation: 4.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: borderColor.withOpacity(0.5), // Add your desired color
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
+                              ),
+                              child: Image.network(
+                                recipe.imageUrl,
+                                height: SizeConfig.screenHeight * 0.21,
+                                width: 250,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            textAlign: TextAlign.center,
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                recipe.name.length > 10
+                                    ? '${recipe.name.substring(0, 10)}...' // Display first 15 characters and add ellipsis
+                                    : recipe.name,
+                                style:  TextStyle(
+                                  fontSize: getProportionateScreenHeight(18),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 );
               },
-              // TODO: replace with the actual number of recipe options
-              childCount: 4,
+              childCount: recipes.length,
             ),
           ),
-          // TODO: add more sliver widgets for other categories
         ],
       ),
     );

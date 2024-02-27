@@ -32,13 +32,14 @@ class NutritionCircularBar extends StatelessWidget {
               children: [
                 Text(
                   "$eatenValue",
-                  style: const TextStyle(fontSize: 12.0,
+                  style:  TextStyle(
+                      fontSize: getProportionateScreenHeight(13),
                   color: Colors.white),
                 ),
                 Text(
                   "EATEN",
                   style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: getProportionateScreenHeight(15),
                     color: eatenColor,
                     fontWeight: FontWeight.bold,
                   ),
@@ -64,7 +65,7 @@ class NutritionCircularBar extends StatelessWidget {
               Text(
                 "$totalCalories", // Display the value
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: getProportionateScreenHeight(20),
                   fontWeight: FontWeight.bold,
                   color: eatenColor,
                 ),
@@ -73,7 +74,7 @@ class NutritionCircularBar extends StatelessWidget {
               Text(
                 " \n \nKCAL LEFT", // Display the value
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: getProportionateScreenHeight(20),
                   fontWeight: FontWeight.bold,
                   color: eatenColor,
                 ),
@@ -87,13 +88,14 @@ class NutritionCircularBar extends StatelessWidget {
               children: [
                 Text(
                   "$burnedValue ",
-                  style: const TextStyle(fontSize: 12.0,
+                  style:  TextStyle(
+                      fontSize: getProportionateScreenHeight(13),
                   color: Colors.white),
                 ),
                 Text(
                   "BURNED",
                   style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: getProportionateScreenHeight(15),
                     color: burnedColor,
                     fontWeight: FontWeight.bold,
                   ),
