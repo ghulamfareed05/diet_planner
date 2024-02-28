@@ -6,6 +6,7 @@ import '../../components/custom_suffix_icon.dart';
 import '../../components/default_button.dart';
 import '../../components/form_error.dart';
 import '../../constants.dart';
+import '../../firebase_utills.dart';
 import '../../size_config.dart';
 
 class LoginForm extends StatefulWidget {
@@ -86,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                 press: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // _signIn(email!, password!);
+                     signIn(email!, password!,context);
                   }
                 },
               )

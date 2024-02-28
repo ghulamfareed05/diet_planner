@@ -1,5 +1,7 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diet_planner/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class QuickTrack extends StatefulWidget {
@@ -15,6 +17,48 @@ class _QuickTrackState extends State<QuickTrack> {
   double _carbs = 0.0;
   double _fat = 0.0;
   double _protein = 0.0;
+  bool isVegetarian = false;
+  bool isGlutenFree = false;
+
+  void _storeUserData() async {
+    // Get the current user ID
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+
+    // Prepare data for nutrient information
+    final nutrientData = {
+      'date': DateTime.now().toString(), // Store date as string
+      'kcal': _kcal,
+      'carbs': _carbs,
+      'fat': _fat,
+      'protein': _protein,
+      'isVegetarian': isVegetarian,
+      'isGlutenFree': isGlutenFree,
+    };
+
+    // Reference to the user's document
+    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+
+    // Reference to a new document in the nutrient_data collection
+    final nutrientDocRef = userRef.collection('nutrient_data').doc();
+
+    // Add nutrient data to the database (assuming error handling exists)
+    await nutrientDocRef.set(nutrientData);
+
+    // Clear form fields (optional)
+    _formKey.currentState!.reset();
+    setState(() {
+      _kcal = 0.0;
+      _carbs = 0.0;
+      _fat = 0.0;
+      _protein = 0.0;
+      isVegetarian = false;
+      isGlutenFree = false;
+    });
+
+    print('Nutrient data saved successfully!');
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,14 +164,31 @@ class _QuickTrackState extends State<QuickTrack> {
                 },
               ),
               SizedBox(height: getProportionateScreenHeight(50)),
+              _buildSwitch(
+                label: 'Vegetarian',
+                value: isVegetarian,
+                onChanged: (value) {
+                  setState(() {
+                    isVegetarian = value;
+                  });
+                },
+              ),
+              _buildSwitch(
+                label: 'Gluten-Free',
+                value: isGlutenFree,
+                onChanged: (value) {
+                  setState(() {
+                    isGlutenFree = value;
+                  });
+                },
+              ),
 
               // Submit button
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // TODO: Handle submitted data (e.g., navigate to a confirmation screen, store data)
-                    print('Kcal: $_kcal, Carbs: $_carbs, Fat: $_fat, Protein: $_protein');
+                    _storeUserData();
                   }
                 },
                 child: const Text('Submit'),
@@ -138,4 +199,24 @@ class _QuickTrackState extends State<QuickTrack> {
       ),
     );
   }
+  Widget _buildSwitch({
+    required String label,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) {
+    return Row(
+      children: [
+        Text(
+          label,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Spacer(),
+        Switch(
+          value: value,
+          onChanged: onChanged,
+        ),
+      ],
+    );
+  }
+
 }

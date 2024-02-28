@@ -21,7 +21,7 @@ class Body extends StatelessWidget{
               children: [
                 SizedBox(height: SizeConfig.screenHeight*0.04,),
                 IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: () {
                     Navigator.pop(context); // Navigate back
                   },
@@ -30,10 +30,10 @@ class Body extends StatelessWidget{
                 SizedBox(height: SizeConfig.screenHeight*0.04,),
                 Text("Register Account",
                 style: headingStyle,),
-                const Text("Complete your details or continue \nwith social media",
+                const Text("Complete your details and create an account.",
                 ),
                 SizedBox(height: SizeConfig.screenWidth*0.08,),
-                 SignUpForm(),
+                 const SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
 
 

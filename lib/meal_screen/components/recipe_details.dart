@@ -1,4 +1,5 @@
 import 'package:diet_planner/components/default_button.dart';
+import 'package:diet_planner/firebase_utills.dart';
 import 'package:diet_planner/meal_plan/your_meal_plan.dart';
 import 'package:diet_planner/meal_screen/components/recipe.dart';
 import 'package:diet_planner/size_config.dart';
@@ -143,7 +144,8 @@ class RecipeDetailScreen extends StatelessWidget {
           width: SizeConfig.screenWidth * 0.9,
           child: DefaultButton(
             text: 'Add to Meal Plan',
-            press: () {
+            press: () async {
+              await updateUserData('${recipe.category}Id', recipe.id);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => YourMealPlan()));
               // Add the recipe to the meal plan

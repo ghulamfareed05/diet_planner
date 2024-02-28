@@ -1,4 +1,5 @@
 import 'package:diet_planner/components/colorful_card.dart';
+import 'package:diet_planner/meal_plan/your_meal_plan.dart';
 import 'package:diet_planner/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -28,15 +29,23 @@ class _BodyState extends State<Body> {
               SizedBox(
                 height: getProportionateScreenHeight(50),
               ),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     ColorfulCard(
-                        title:
-                            "Collect recipes from the web or create your own.",
+                        title: "Your Recipes",
+                        description:"Select recipes create your meal plan.",
                         cardColor: Colors.white,
-                        buttonText: "Add Recipe",
+                        buttonText: "Your Meal Plan",
+                        onButtonPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => YourMealPlan(),
+                            ),
+                          );
+                        },
                         imagePath: "assets/images/pic2.jpg"),
 
                   ],

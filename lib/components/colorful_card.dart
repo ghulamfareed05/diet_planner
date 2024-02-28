@@ -1,18 +1,24 @@
 import 'package:diet_planner/size_config.dart';
 import 'package:flutter/material.dart';
 
+
 class ColorfulCard extends StatelessWidget {
   final String title;
+  final String description;
   final Color cardColor;
   final String buttonText;
   final String imagePath;
+  final VoidCallback onButtonPressed;
+
 
   const ColorfulCard({
     super.key,
     required this.title,
+    required this.description,
     required this.cardColor,
     required this.buttonText,
     required this.imagePath,
+    required this.onButtonPressed,
   });
 
   @override
@@ -35,7 +41,7 @@ class ColorfulCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Your Recipe",
+                  title,
                   style: TextStyle(
                       fontSize: SizeConfig.screenHeight * 0.025,
                       color: Colors.black38),
@@ -43,7 +49,7 @@ class ColorfulCard extends StatelessWidget {
                 SizedBox(
                   width: getProportionateScreenWidth(150),
                   child: Text(
-                    title,
+                    description,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -52,9 +58,8 @@ class ColorfulCard extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    // Add your button action here
-                  },
+                  onPressed: onButtonPressed,
+
                   child: Text(
                     buttonText,
                     style: const TextStyle(color: Colors.green, fontSize: 16),
@@ -71,8 +76,8 @@ class ColorfulCard extends StatelessWidget {
             ),
             Image.asset(
               imagePath,
-              width: 80,
-              height: 80,
+              width: SizeConfig.screenWidth * 0.2,
+              height: SizeConfig.screenHeight * 0.1,
               fit: BoxFit.cover,
             ),
           ],

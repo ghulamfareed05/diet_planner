@@ -7,8 +7,8 @@ class NutritionCircularBar extends StatelessWidget {
       required this.eatenValue,
       required this.burnedValue,
       required this.totalCalories,
-        this.eatenColor = Colors.white, // Example customization
-        this.burnedColor = Colors.white,
+        this.eatenColor = Colors.black54, // Example customization
+        this.burnedColor = Colors.black54, // Example customization
       });
   final int eatenValue; // Range: 0.0 (none eaten) to total calories
   final int burnedValue; // Range: 0.0 (none burned) to total calories
@@ -34,7 +34,7 @@ class NutritionCircularBar extends StatelessWidget {
                   "$eatenValue",
                   style:  TextStyle(
                       fontSize: getProportionateScreenHeight(13),
-                  color: Colors.white),
+                  color: Colors.black54),
                 ),
                 Text(
                   "EATEN",
@@ -90,7 +90,7 @@ class NutritionCircularBar extends StatelessWidget {
                   "$burnedValue ",
                   style:  TextStyle(
                       fontSize: getProportionateScreenHeight(13),
-                  color: Colors.white),
+                  color: Colors.black54),
                 ),
                 Text(
                   "BURNED",

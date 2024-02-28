@@ -18,19 +18,20 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  // final _emailController = TextEditingController();
-  // final _passwordController = TextEditingController();
-  // final _confirmPasswordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _fullNameController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   String? email;
   String? password;
   String? phoneNumber;
+  String? fullName;
   bool remember = false;
   final List<String?> errors = [];
 
   void sendPhoneNumber() {
     final ap = Provider.of<AuthProvider>(context, listen: false);
-    ap.signInWithPhone(context, phoneNumber!);
+    ap.signInWithPhone(context, phoneNumber!,email!,password!,fullName!);
   }
 // void sendPhoneNumber(){
 //   Utilities utilities = Utilities();
@@ -58,13 +59,13 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-          // buildNameFormField(),
+          buildNameFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPhoneNumberFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          // buildEmailFormField(),
+          buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          // buildPasswordFormField(),
+          buildPasswordFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
@@ -99,6 +100,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      controller: _passwordController,
       // (input.length == 8 && input.contains(RegExp(r'^[a-z]+$'))
       obscureText: true,
       onSaved: (newValue) => password = newValue,
@@ -133,6 +135,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
@@ -199,9 +202,9 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildNameFormField() {
     return TextFormField(
-      // controller: firstNameController,
+      controller: _fullNameController,
       onSaved: (value) {
-        // firstName = value;
+        fullName = value;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -217,8 +220,8 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: const InputDecoration(
-        labelText: "First Name",
-        hintText: "Enter your first name",
+        labelText: "Name",
+        hintText: "Enter your name",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/User.svg",

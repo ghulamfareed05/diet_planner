@@ -1,5 +1,6 @@
 import 'package:diet_planner/home_screen/home_screen.dart';
 import 'package:diet_planner/meal.dart';
+import 'package:diet_planner/sign_up/sign_up_screen.dart';
 import 'package:diet_planner/upload_json.dart';
 import 'package:flutter/material.dart';
 import '../components/lite_button.dart';
@@ -30,7 +31,7 @@ class VideoSplash extends StatelessWidget {
                     Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  JsonUploadScreen()));
+                                    builder: (context) =>  LoginScreen()));
                   },
                 ),
                 SizedBox(
@@ -42,7 +43,7 @@ class VideoSplash extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                            builder: (context) => SignUpScreen()));
                   },
                 ),
 

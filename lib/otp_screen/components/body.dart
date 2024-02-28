@@ -1,3 +1,4 @@
+import 'package:diet_planner/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
@@ -131,7 +132,7 @@ class _BodyState extends State<Body> {
       userOtp: userOtp,
       onSuccess: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
         // checking whether user exists in the db
         // ap.checkExistingUser().then(
         //       (value) async {
