@@ -11,12 +11,7 @@ import '../../provider/recipe_provider.dart';
 import '../../size_config.dart';
 import '../meal_example.dart';
 
-final List<String> imgList = [
-  'assets/images/breakfast/fast1.jpg',
-  'assets/images/breakfast/fast2.jpg',
-  'assets/images/breakfast/fast3.jpg',
-  'assets/images/breakfast/fast4.jpg',
-];
+
 
 class MealItems extends StatefulWidget {
   MealItems({

@@ -1,6 +1,7 @@
 import 'package:diet_planner/constants.dart';
 import 'package:diet_planner/home_screen/components/body.dart';
 import 'package:diet_planner/home_screen/components/example.dart';
+import 'package:diet_planner/log_out/logout_screen.dart';
 import 'package:diet_planner/main_screen/main_screen.dart';
 import 'package:diet_planner/meal.dart';
 import 'package:diet_planner/meal_screen/meal_example.dart';
@@ -24,9 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
     MainScreen(), // Replace with your desired tabs
     MealScreen(),
     Example(),
-    QuickTrack(),
-    GoalScreen(),
-    Meal(),    // Replace with your desired tabs
+    Meal(),
+    LogoutScreen(),    // Replace with your desired tabs
   ];
   @override
   Widget build(BuildContext context) {
@@ -61,13 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.set_meal, ),
             label: 'Meal',
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.set_meal, ),
-            label: 'Meal',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, ),
-            label: 'Favorites',
+            icon: Icon(Icons.person_2, ),
+            label: 'Profile',
           ),
           // Add more BottomNavigationBarItems as needed
         ],

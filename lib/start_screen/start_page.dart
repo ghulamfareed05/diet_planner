@@ -1,7 +1,5 @@
-import 'package:diet_planner/home_screen/home_screen.dart';
-import 'package:diet_planner/meal.dart';
+
 import 'package:diet_planner/sign_up/sign_up_screen.dart';
-import 'package:diet_planner/upload_json.dart';
 import 'package:flutter/material.dart';
 import '../components/lite_button.dart';
 import '../components/video_player_widget.dart';
@@ -13,11 +11,10 @@ class VideoSplash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          const VideoPlayerWidget(videoPath: "assets/video/first.mp4"),
           Positioned(
             bottom: 100,
             left: 0,

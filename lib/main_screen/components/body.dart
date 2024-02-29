@@ -89,7 +89,8 @@ class Body extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QuickTrack()));
+                              builder: (context) => QuickTrack( category: "breakfast",)));
+
                     }),
                 SetDietCard(
                     imageUrl: "assets/images/lunch/lunch3.jpg",
@@ -100,7 +101,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QuickTrack()));
+                              builder: (context) => QuickTrack(category: "lunch",)));
                     }),
                 SetDietCard(
                     imageUrl: "assets/images/dinner/dinner4.jpg",
@@ -111,7 +112,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QuickTrack()));
+                              builder: (context) => QuickTrack(category: "dinner")));
                     }),
                 SetDietCard(
                     imageUrl: "assets/images/breakfast/fast5.jpg",
@@ -122,7 +123,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QuickTrack()));
+                              builder: (context) => QuickTrack(category: "snack")));
                     }),
                 SizedBox(
                   height: getProportionateScreenHeight(20),

@@ -53,6 +53,30 @@ Future<void> updateUserData(String name, String value) async {
     print('Error updating user data: $e');
   }
 }
+Future<void> addRecipeIdToMeal(String recipeId) async {
+  try {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser!.uid;
+
+    // Reference to the 'users' collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    // Reference to the document of the specific user based on UID
+    DocumentReference userDoc = users.doc(uid);
+
+    // Update the 'mealIds' array field using arrayUnion
+    await userDoc.update({
+      'mealIds': FieldValue.arrayUnion([recipeId]),
+    });
+
+    print('Recipe ID added to mealIds array successfully.');
+  } catch (e) {
+    // Handle errors
+    print('Error updating user data: $e');
+  }
+}
+
+
 Future<void> addData(String name) async {
   try {
     FirebaseAuth auth = FirebaseAuth.instance;

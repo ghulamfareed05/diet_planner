@@ -12,13 +12,17 @@ class NutritionCircularBar extends StatelessWidget {
       });
   final int eatenValue; // Range: 0.0 (none eaten) to total calories
   final int burnedValue; // Range: 0.0 (none burned) to total calories
-  final int totalCalories;
+  final int? totalCalories;
   final Color eatenColor; // Customize as needed
   final Color burnedColor; // Customize as needed
 
   @override
   Widget build(BuildContext context) {
-    final double progress = eatenValue / totalCalories;
+     double progress=0.0;
+    if(totalCalories!=0 && totalCalories!=null){
+      progress = eatenValue / totalCalories!;
+
+    }
 
     return Container(
       padding: const EdgeInsets.all(16.0),

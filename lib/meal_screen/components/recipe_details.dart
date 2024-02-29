@@ -145,7 +145,7 @@ class RecipeDetailScreen extends StatelessWidget {
           child: DefaultButton(
             text: 'Add to Meal Plan',
             press: () async {
-              await updateUserData('${recipe.category}Id', recipe.id);
+              await addRecipeIdToMeal(recipe.id);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => YourMealPlan()));
               // Add the recipe to the meal plan
