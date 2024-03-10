@@ -31,8 +31,9 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void sendPhoneNumber() {
     final ap = Provider.of<AuthProvider>(context, listen: false);
-    ap.signInWithPhone(context, phoneNumber!,email!,password!,fullName!);
+    ap.signInWithPhone(context, phoneNumber!, email!, password!, fullName!);
   }
+
 // void sendPhoneNumber(){
 //   Utilities utilities = Utilities();
 //   utilities.signInWithPhone(context, phoneNumber!);

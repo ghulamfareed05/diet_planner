@@ -1,5 +1,3 @@
-
-
 import 'package:diet_planner/start_screen/start_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,31 +11,41 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
+    // Function to check if the user is logged in
     bool isUserLoggedIn() {
       return FirebaseAuth.instance.currentUser != null;
     }
-    Future.delayed(const Duration(seconds: 4), () async { // Delay for 3 seconds
+
+    // Function to handle navigation after delay
+    void navigateAfterDelay() async {
+      // Replace 4 seconds with your desired delay duration
+      await Future.delayed(const Duration(seconds: 4));
+
       if (isUserLoggedIn()) {
-        await getUserData();
-
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen())); // Replace with your route
+        await getUserData(); // Assuming this is defined elsewhere
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> VideoSplash())); // Replace with your route
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => VideoSplash()),
+        );
       }
-    });
-    return const Scaffold(
+    }
+
+    // Call the navigation function on widget creation
+    navigateAfterDelay();
+
+    return Scaffold(
       backgroundColor: Colors.white,
-          body: Center(
-
-                // App logo or image (optional)
-
-                // App name or slogan (optional)
-              child:   Text(
-                  "Diet Planner App",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-
-            ),
+      body: Center(
+        child: Text(
+          "Diet Planner App",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }

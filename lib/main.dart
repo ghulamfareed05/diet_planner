@@ -21,7 +21,6 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => AuthProvider()),
-
     ],
     child: const MyApp(),
   ));
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home:  SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
